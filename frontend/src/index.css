@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+
+body {
+    margin: 0px;
+    height: 100vh;
+    background-color: rgb(240, 240, 240);
+
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+a {
+    color: rgb(31, 31, 31);
+    text-decoration: none;
+}
+
+.navBar {
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 5px 5px 2px #e9e8e8;
+
+}
+
+.navTitle {
+    font-family: 'Lato', sans-serif;
+
+}
+
+.homepage {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.workouts {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.creationFormNest {
+    display: flex;
+    flex-direction: column;
+    margin-left: 4em;
+    width: 15em;
+}
+
+.creationForm {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2em;
+}
+
+.homepageContent {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.inputs {
+    margin-bottom: 1em;
+    padding: 10px;
+    box-shadow: 2px 5px 5px 2px #dfdfdf;
+    border: 0px;
+    border-radius: 5px;
+
+}
+
+.inputSubmit {
+    background-color: rgb(37, 218, 37);
+    border: 0px;
+    box-shadow: 2px 5px 5px 2px #dfdfdf;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 1em;
+    padding: 10px;
+    box-shadow: 2px 5px 5px 2px #dfdfdf;
+    border: 0px;
+    border-radius: 5px;
+
+}
+
+.inputDelete {
+    border: 0px;
+    color: black;
+    border-radius: 100%;
+
+}
+
+.inputDelete:hover {
+    background-color: #a0a0a0;
+}
+
+
+.inputSubmit:hover {
+    background-color: rgb(24, 150, 24);
+}
+
+label {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: #303030;
+    margin-bottom: 5px;
+}
+
+.workoutContainers {
+    background-color: white;
+    font-family: 'Lato', sans-serif;
+    width: 100%;
+    padding: 15px;
+    margin-top: 2em;
+    border-radius: 5px;
+    box-shadow: 2px 5px 5px 2px #dfdfdf;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 0%;
+}
+
+.workoutsTitle {
+    color: rgb(10, 173, 72);
+    margin: 0px;
+    font-weight: 700;
+}
+
+.workoutsTime {
+    margin-top: 0px;
+}
+
+@media only screen and (max-width: 650px) {
+    .homepage {
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    .workouts {
+        width: 70%;
+    }
+
+    .creationFormNest {
+        margin-left: 0px;
+    }
+}
