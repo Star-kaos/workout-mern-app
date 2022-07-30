@@ -12,10 +12,11 @@ function Home() {
     useEffect(() => {
         const fetchWorkouts = async () => {
             const response = await axios.get('http://localhost:4000/api/workouts')
-            console.log(response)
+            // console.log(response)
             if (response.status === 200) {
                 setWorkouts(response.data)
             }
+
         }
 
         fetchWorkouts()
@@ -23,13 +24,15 @@ function Home() {
 
     return (
         <div className="homepage">
-            <div className='workouts'>
-                {workouts && workouts.map((workout) => (
-                    <WorkoutDetails key={workout._id} workout={workout} />
-                ))}
-            </div>
-            <div className='creationFormNest'>
-                <WorkoutForm />
+            <div className='innerHomepage'>
+                <div className='workouts'>
+                    {workouts && workouts.map((workout) => (
+                        <WorkoutDetails key={workout._id} workout={workout} />
+                    ))}
+                </div>
+                <div className='creationFormNest'>
+                    <WorkoutForm />
+                </div>
             </div>
         </div>
 

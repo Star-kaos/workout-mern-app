@@ -3,6 +3,9 @@ import './index.css'
 
 //pages
 import Homepage from './pages/homepage.js'
+import Login from './pages/login.js'
+import Signup from './pages/signup.js'
+
 
 //components
 import Navbar from './components/navbar.js'
@@ -19,6 +22,14 @@ function App() {
             <Route
               path="/"
               element={<Homepage />}
+            />
+            <Route
+              path="/login"
+              element={<Login />}
+            />
+            <Route
+              path="/signup"
+              element={<Signup />}
             />
           </Routes>
         </div>

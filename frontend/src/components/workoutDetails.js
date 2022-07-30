@@ -12,7 +12,7 @@ const WorkoutDetails = ({ workout }) => {
         <div className='workoutContainers'>
             <div>
                 <h3 className="workoutsTitle">{workout.title}</h3>
-                <p className="workoutsTime">Created at: {moment(workout.createdAt).format('LLLL')}</p>
+                <p className="workoutsTime">{moment(workout.createdAt).format('LLLL')}</p>
                 <p className="workoutsReps"><strong>Reps: {workout.reps}</strong></p>
                 <p className="workoutsLoad"><strong>Load (lbs): {workout.load}</strong></p>
             </div>

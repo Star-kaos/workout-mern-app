@@ -28,12 +28,54 @@ a {
     align-items: center;
     justify-content: center;
     box-shadow: 2px 5px 5px 2px #e9e8e8;
+    height: 5em;
+}
+
+.innerNav {
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-right: 15px;
 
 }
 
 .navTitle {
     font-family: 'Lato', sans-serif;
 
+}
+
+.navLogin {
+    font-family: 'Lato', sans-serif;
+    margin-right: 20px;
+}
+
+.navSignup {
+    font-family: 'Lato', sans-serif;
+
+}
+
+.navTitle:hover {
+    border-bottom: #303030 solid 1px;
+
+
+}
+
+.navLogin:hover {
+    border-bottom: #303030 solid 1px;
+
+}
+
+.navSignup:hover {
+    border-bottom: #303030 solid 1px;
+
+}
+
+.loginSignup {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .homepage {
@@ -43,19 +85,26 @@ a {
     justify-content: center;
 }
 
+
+.innerHomepage {
+    width: 55%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .workouts {
-    width: 40%;
+    width: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 }
 
 .creationFormNest {
     display: flex;
     flex-direction: column;
-    margin-left: 4em;
-    width: 15em;
+    width: 23%;
 }
 
 .creationForm {
@@ -80,6 +129,88 @@ a {
 
 }
 
+.signupPage {
+    width: 100vw;
+    height: calc(100vh - 8em);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.signupNest {
+    background-color: white;
+    box-shadow: 2px 5px 5px 2px #e9e8e8;
+    padding: 20px;
+    border-radius: 5px;
+    /* border: #535353 solid 1px; */
+}
+
+.signupForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.signLogInputs {
+    background-color: rgb(240, 240, 240);
+    margin-bottom: 1em;
+    padding: 10px;
+    border: 0px;
+    width: 20em;
+    border-radius: 5px;
+    /* box-shadow: 2px 5px 5px 2px #e9e8e8; */
+}
+
+.signLogInputSubmit {
+    background-color: rgb(37, 218, 37);
+    border: 0px;
+    /* box-shadow: 2px 5px 5px 2px #dfdfdf; */
+    border-radius: 5px;
+    color: white;
+    padding: 10px;
+    /* border: 0px; */
+    border-radius: 5px;
+    margin-bottom: 0%;
+}
+
+.signLogInputSubmit:hover {
+    background-color: rgb(24, 150, 24);
+}
+
+.signupTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: rgb(10, 173, 72);
+    margin-top: 0%;
+}
+
+.signupError {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: #c70f0f;
+}
+
+.loginPage {
+    width: 100vw;
+    height: calc(100vh - 8em);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginTitle {
+    font-family: 'Lato', sans-serif;
+    font-weight: 600;
+    color: #303030;
+}
+
+.loginForm {
+    display: flex;
+    flex-direction: column;
+}
+
+
 .inputSubmit {
     background-color: rgb(37, 218, 37);
     border: 0px;
@@ -91,7 +222,10 @@ a {
     box-shadow: 2px 5px 5px 2px #dfdfdf;
     border: 0px;
     border-radius: 5px;
+}
 
+.inputSubmit:hover {
+    background-color: rgb(24, 150, 24);
 }
 
 .inputDelete {
@@ -102,13 +236,12 @@ a {
 }
 
 .inputDelete:hover {
-    background-color: #a0a0a0;
+    color: white;
+    background-color: #fa1a1a;
 }
 
 
-.inputSubmit:hover {
-    background-color: rgb(24, 150, 24);
-}
+
 
 label {
     font-family: 'Lato', sans-serif;
@@ -141,17 +274,40 @@ label {
     margin-top: 0px;
 }
 
-@media only screen and (max-width: 650px) {
-    .homepage {
+@media only screen and (max-width: 1000px) {
+    .innerHomepage {
         flex-direction: column-reverse;
         align-items: center;
     }
 
     .workouts {
-        width: 70%;
+        width: 100%;
     }
 
     .creationFormNest {
-        margin-left: 0px;
+        width: 40%;
+    }
+
+    .innerHomepage {
+        width: 75%;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .innerNav {
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .navHomeLink {
+        border-bottom: 2px solid rgb(56, 56, 56);
+    }
+
+    .navBar {
+        height: 9em;
+    }
+
+    .signupPage {
+        height: calc(100vh - 10em);
     }
 }

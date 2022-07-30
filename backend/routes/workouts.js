@@ -27,14 +27,37 @@ router.get('/view/:id', asyncHandler(async (req, res) => {
 
 //create workout
 router.post('/new', asyncHandler(async (req, res) => {
-    console.log(req.body.title)
-    const usedWorkout = await Workout.findOne({ title: req.body.title })
 
+    //error handling
+    if (req.body.title.length === 0) {
+        res.status(401).json({ msg: "Please enter a title." })
+        return
+    }
+    if (req.body.reps.length === 0) {
+        res.status(401).json({ msg: "Please enter your reps." })
+        return
+    }
+    if (req.body.load.length === 0) {
+        res.status(401).json({ msg: "Please enter a load." })
+        return
+    }
+    if (req.body.load.length >= 4) {
+        res.status(401).json({ msg: "Are you sure you can lift that much?" })
+        return
+    }
+    const usedWorkout = await Workout.findOne({ title: req.body.title })
     if (usedWorkout === null) {
         const newWorkout = await Workout.create(req.body)
         res.status(200).json(newWorkout)
         console.log('workout already created')
+        return
     }
+
+    if (req.body.title === usedWorkout.title) {
+        res.status(401).json({ msg: "Workout is already created." })
+        return
+    }
+    // res.status(200).json({ msg: "not hitting anything else." })
 }))
 
 //delete workout
