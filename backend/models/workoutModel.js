@@ -7,6 +7,10 @@ const workoutSchema = new Schema({
         type: String,
         required: true
     },
+    userEmail: {
+        type: String,
+        required: true
+    },
     reps: {
         type: Number,
         required: true
@@ -15,6 +19,7 @@ const workoutSchema = new Schema({
         type: Number,
         required: true
     }
+
 }, { timestamps: true })
 
 module.exports = mongoose.model('Workout', workoutSchema)

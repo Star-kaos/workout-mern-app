@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 body {
     margin: 0px;
@@ -38,12 +39,10 @@ a {
     align-items: center;
     justify-content: space-between;
     margin-right: 15px;
-
 }
 
 .navTitle {
     font-family: 'Lato', sans-serif;
-
 }
 
 .navLogin {
@@ -53,23 +52,18 @@ a {
 
 .navSignup {
     font-family: 'Lato', sans-serif;
-
 }
 
 .navTitle:hover {
-    border-bottom: #303030 solid 1px;
-
-
+    color: #1944a1;
 }
 
 .navLogin:hover {
-    border-bottom: #303030 solid 1px;
-
+    color: #1944a1;
 }
 
 .navSignup:hover {
-    border-bottom: #303030 solid 1px;
-
+    color: #1944a1;
 }
 
 .loginSignup {
@@ -130,6 +124,15 @@ a {
 }
 
 .signupPage {
+    width: 100vw;
+    height: calc(100vh - 8em);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginPage {
     width: 100vw;
     height: calc(100vh - 8em);
     display: flex;
@@ -274,6 +277,66 @@ label {
     margin-top: 0px;
 }
 
+.loggedinDiv {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.logoutBtnNest {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoutBtn {
+    font-family: 'Poppins', sans-serif;
+    margin-left: 20px;
+    border: 3px solid rgb(37, 218, 37);
+    border-radius: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: white;
+}
+
+.userEmailP {
+    font-family: 'Lato', sans-serif;
+}
+
+.logoutBtn:hover {
+    border: 3px solid rgb(24, 150, 24);
+}
+
+.welcomepage {
+    width: 100vw;
+    height: calc(100vh - 8em);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerWelcomepage {
+    width: 70%;
+    font-family: 'Lato', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.welcomepageBtns {
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 10px;
+
+}
+
+.welcomeTitle {
+    text-align: center;
+}
+
+
 @media only screen and (max-width: 1000px) {
     .innerHomepage {
         flex-direction: column-reverse;
@@ -308,6 +371,10 @@ label {
     }
 
     .signupPage {
+        height: calc(100vh - 10em);
+    }
+
+    .loginPage {
         height: calc(100vh - 10em);
     }
 }

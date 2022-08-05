@@ -1,17 +1,23 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios';
-
+import { useAuthContext } from '../hooks/useAuthContext'
 
 function WorkoutForm() {
+    const { user } = useAuthContext()
     const [title, setTitle] = useState('')
+    const [userEmail, setUserEmail] = useState('')
     const [reps, setReps] = useState('')
     const [load, setLoad] = useState('')
     const [error, setError] = useState('')
 
+    useEffect(() => {
+        setUserEmail(user.userEmail)
+    }, [user])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const workout = { title, reps, load }
+        //set to users current email
+        const workout = { title, userEmail, reps, load }
         const response = await axios.post('http://localhost:4000/api/workouts/new', workout).catch((error) => error.response)
 
         if (response.status === 200) {
@@ -21,8 +27,6 @@ function WorkoutForm() {
         if (response.status === 401) {
             setError(response.data.msg)
         }
-
-
     }
 
     return (

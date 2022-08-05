@@ -14,8 +14,14 @@ function asyncHandler(cb) {
 }
 
 //find all workouts
-router.get('/', asyncHandler(async (req, res, next) => {
+router.get('/', asyncHandler(async (req, res) => {
     const allWorkouts = await Workout.find().sort({ createdAt: -1 })
+    res.status(200).json(allWorkouts)
+}))
+
+//find all users workouts
+router.get('/user/:email', asyncHandler(async (req, res) => {
+    const allWorkouts = await Workout.find({ userEmail: req.params.email }).sort({ createdAt: -1 })
     res.status(200).json(allWorkouts)
 }))
 
@@ -49,7 +55,7 @@ router.post('/new', asyncHandler(async (req, res) => {
     if (usedWorkout === null) {
         const newWorkout = await Workout.create(req.body)
         res.status(200).json(newWorkout)
-        console.log('workout already created')
+        // console.log('workout created')
         return
     }
 
@@ -64,6 +70,12 @@ router.post('/new', asyncHandler(async (req, res) => {
 router.get('/delete/:id', asyncHandler(async (req, res) => {
     const deletedWorkout = await Workout.deleteOne({ _id: req.params.id })
     res.status(200).json(deletedWorkout)
+}))
+
+//deleteAll
+router.get('/deleteAll', asyncHandler(async (req, res) => {
+    const deleteAll = await Workout.deleteMany()
+    res.status(200).json(deleteAll)
 }))
 
 module.exports = router

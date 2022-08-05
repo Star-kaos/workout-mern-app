@@ -2,7 +2,9 @@ const express = require('express')
 const app = express()
 const { default: mongoose } = require("mongoose")
 const workoutRoutes = require('./routes/workouts')
-const userRoutes = require('./routes/signup')
+const userSignupRoutes = require('./routes/signup')
+const userLoginRoutes = require('./routes/login')
+
 
 const cors = require('cors')
 
@@ -10,7 +12,9 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/api/workouts', workoutRoutes)
-app.use('/api/user', userRoutes)
+app.use('/api/user', userSignupRoutes)
+app.use('/api/user', userLoginRoutes)
+
 
 
 //sending to /api/workouts

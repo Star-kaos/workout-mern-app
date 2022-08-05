@@ -1,6 +1,12 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/userModel')
+const bcrypt = require("bcrypt")
+const jwt = require('jsonwebtoken')
+
+const createToken = (_id) => {
+    return jwt.sign({ _id }, "ilovebasketballsomuch", { expiresIn: '24h' })
+}
 
 //async machine
 function asyncHandler(cb) {
@@ -43,14 +49,30 @@ router.post('/new', asyncHandler(async (req, res) => {
     }
 
     if (req.body.password.length <= 6) {
-        res.status(401).json({ msg: "Please enter a longer password (over 6 charectors)." })
+        res.status(401).json({ msg: "Please enter a stronger password (over 6 charectors)." })
         return
     }
     const existingEmail = await User.findOne({ email: req.body.email })
+
+    //if worked with no errors
     if (existingEmail === null) {
-        const newUser = await User.create(req.body).catch((error) => error.response)
-        console.log(newUser)
-        res.status(200).json(newUser)
+        //hashing password
+        const salt = await bcrypt.genSalt(10)
+        const hashedPass = await bcrypt.hash(req.body.password, salt)
+        //user outline
+        const newUser = new User({
+            username: req.body.username,
+            email: req.body.email,
+            password: hashedPass,
+        })
+        //saving new user
+        await newUser.save().catch(err => err.response)
+
+        const token = createToken(newUser._id)
+        // console.log(token)
+
+        // console.log(newUser.password)
+        res.status(200).json({ newUser, token })
         return
     }
 
@@ -58,8 +80,6 @@ router.post('/new', asyncHandler(async (req, res) => {
         res.status(401).json({ msg: "Email is already in use." })
         return
     }
-    // res.status(200).json({ msg: "not hitting anything else." })
-
 }))
 
 //delete user

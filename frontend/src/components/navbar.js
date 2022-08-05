@@ -1,7 +1,15 @@
 import { Link } from 'react-router-dom'
-import '../index.css'
+import { useAuthContext } from '../hooks/useAuthContext'
+
 
 function Navbar() {
+    const { user } = useAuthContext()
+    const { dispatch } = useAuthContext()
+    const handleClick = () => {
+        dispatch({ type: "LOGOUT" })
+        localStorage.removeItem('user')
+    }
+
     return (
         <div className="navBar">
             <div className='innerNav'>
@@ -11,12 +19,20 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className='loginSignup'>
-                    <Link to="/login">
-                        <p className='navLogin'>login</p>
-                    </Link>
-                    <Link to="/signup">
-                        <p className='navSignup'>sign-up</p>
-                    </Link>
+                    <span>{user && user.userEmail ? <div className='loggedinDiv'>
+                        <p className='userEmailP'>{user.userEmail}</p>
+                        <div className='logoutBtnNest'>
+                            <button className='logoutBtn' onClick={handleClick}>logout</button>
+                        </div>
+                    </div> :
+                        <div className='loginSignup'>
+                            {/* <Link to="/login">
+                                <p className='navLogin'>login</p>
+                            </Link>
+                            <Link to="/signup">
+                                <p className='navSignup'>sign-up</p>
+                            </Link> */}
+                        </div>}</span>
                 </div>
             </div>
         </div>

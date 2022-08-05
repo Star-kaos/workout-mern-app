@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import axios from 'axios';
+import { useAuthContext } from '../hooks/useAuthContext'
 
 
 function SignupForm() {
@@ -7,6 +8,7 @@ function SignupForm() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
+    const { dispatch } = useAuthContext()
 
     const handleSubmitUserData = async (e) => {
         e.preventDefault();
@@ -15,7 +17,12 @@ function SignupForm() {
         const response = await axios.post('http://localhost:4000/api/user/new', userData).catch((error) => error.response)
 
         if (response.status === 200) {
-            console.log(response.data)
+            localStorage.setItem("user", JSON.stringify({ userEmail: userData.email, token: response.data.token }))
+            console.log(response)
+
+            //update authcontext
+            dispatch({ type: "LOGIN", payload: { userEmail: response.data.newUser.email, token: response.data.token } })
+
             window.location = "/"
         }
         if (response.status === 401) {
