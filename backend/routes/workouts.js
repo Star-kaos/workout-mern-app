@@ -51,7 +51,7 @@ router.post('/new', asyncHandler(async (req, res) => {
         res.status(401).json({ msg: "Are you sure you can lift that much?" })
         return
     }
-    const usedWorkout = await Workout.findOne({ title: req.body.title })
+    const usedWorkout = await Workout.findOne({ title: req.body.title, userEmail: req.body.userEmail })
     if (usedWorkout === null) {
         const newWorkout = await Workout.create(req.body)
         res.status(200).json(newWorkout)
