@@ -14,6 +14,7 @@ function Home() {
 
     useEffect(() => {
         setEmail(user.userEmail)
+        console.log("Welcome back", user.userEmail)
 
         const fetchWorkouts = async () => {
             const response = await axios.get(`http://localhost:4000/api/workouts/user/${email}`)
