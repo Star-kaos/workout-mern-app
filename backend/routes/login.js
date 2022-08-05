@@ -5,8 +5,10 @@ const bcrypt = require("bcrypt")
 const jwt = require('jsonwebtoken')
 
 const createToken = (_id) => {
-    return jwt.sign({ _id }, "ilovebasketballsomuch", { expiresIn: '24h' })
+    return jwt.sign({ _id }, "ilovebasketballsomuch", { expiresIn: '5s' })
 }
+
+
 
 //async machine
 function asyncHandler(cb) {
@@ -48,7 +50,7 @@ router.post('/login', asyncHandler(async (req, res) => {
         }
         if (result) {
             const token = createToken(isUser._id)
-            res.status(200).json({ isUser, token: token })
+            res.status(200).json({ isUser, token: token, isAuth: true })
             return
         }
         if (!result) {
@@ -58,7 +60,7 @@ router.post('/login', asyncHandler(async (req, res) => {
     });
 }))
 
-//delete user
+//logout user
 router.get('logout', asyncHandler(async (req, res) => {
     const deletedUser = await User.deleteOne({ _id: req.params.id })
     res.status(200).json(deletedUser)

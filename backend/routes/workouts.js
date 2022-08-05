@@ -1,4 +1,5 @@
 const express = require('express')
+const { auth } = require('../middleware/auth')
 const router = express.Router()
 const Workout = require('../models/workoutModel')
 
@@ -14,25 +15,25 @@ function asyncHandler(cb) {
 }
 
 //find all workouts
-router.get('/', asyncHandler(async (req, res) => {
+router.get('/', auth, asyncHandler(async (req, res) => {
     const allWorkouts = await Workout.find().sort({ createdAt: -1 })
     res.status(200).json(allWorkouts)
 }))
 
 //find all users workouts
-router.get('/user/:email', asyncHandler(async (req, res) => {
+router.get('/user/:email', auth, asyncHandler(async (req, res) => {
     const allWorkouts = await Workout.find({ userEmail: req.params.email }).sort({ createdAt: -1 })
     res.status(200).json(allWorkouts)
 }))
 
 //find one workouts
-router.get('/view/:id', asyncHandler(async (req, res) => {
+router.get('/view/:id', auth, asyncHandler(async (req, res) => {
     const viewWorkout = await Workout.findById(req.params.id)
     res.status(200).json(viewWorkout)
 }))
 
 //create workout
-router.post('/new', asyncHandler(async (req, res) => {
+router.post('/new', auth, asyncHandler(async (req, res) => {
 
     //error handling
     if (req.body.title.length === 0) {
@@ -67,7 +68,7 @@ router.post('/new', asyncHandler(async (req, res) => {
 }))
 
 //delete workout
-router.get('/delete/:id', asyncHandler(async (req, res) => {
+router.get('/delete/:id', auth, asyncHandler(async (req, res) => {
     const deletedWorkout = await Workout.deleteOne({ _id: req.params.id })
     res.status(200).json(deletedWorkout)
 }))

@@ -15,14 +15,16 @@ function LoginForm() {
         const response = await axios.post('http://localhost:4000/api/user/login', userLoginData).catch((error) => error.response)
 
         if (response.status === 200) {
-            localStorage.setItem("user", JSON.stringify({ userEmail: userLoginData.email, token: response.data.token }))
+            localStorage.setItem("user", JSON.stringify({ userEmail: userLoginData.email, token: response.data.token, isAuth: true }))
 
             console.log(response)
 
             //update authcontext
-            dispatch({ type: "LOGIN", payload: { userEmail: response.data.isUser.email, token: response.data.token } })
+            dispatch({ type: "LOGIN", payload: { userEmail: response.data.isUser.email, token: response.data.token, isAuth: true } })
 
-            window.location = "/"
+            if (response.data.isAuth) {
+                window.location = "/"
+            }
         }
         if (response.status === 401) {
             console.log(response.data.msg)
