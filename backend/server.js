@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 mongoose.connect("mongodb://127.0.0.1:27017/workout_db")
     .then(() => {
         app.listen(4000, () => {
-            console.log('connected to port: 4000')
+            console.log('connected to the port: 4000')
         })
     })
     .catch((error) => {
