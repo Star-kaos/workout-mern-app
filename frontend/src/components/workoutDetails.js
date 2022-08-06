@@ -1,9 +1,18 @@
 import axios from 'axios';
 import moment from 'moment';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const WorkoutDetails = ({ workout }) => {
+    const { user } = useAuthContext()
+
     const handleDelete = async (e) => {
-        const response = await axios.get(`http://localhost:4000/api/workouts/delete/${workout._id}`)
+        const config = {
+            headers: {
+                "x-auth-token": user.token
+            }
+        }
+
+        const response = await axios.get(`http://localhost:4000/api/workouts/delete/${workout._id}`, config)
         if (response.status === 200) {
             console.log(response.data)
         }

@@ -7,9 +7,17 @@ function LoginForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const { dispatch } = useAuthContext()
+    // const { user } = useAuthContext()
+
 
     const handleSubmitUserData = async (e) => {
         e.preventDefault();
+
+        // const config = {
+        //     headers: {
+        //         "x-auth-token": user.token
+        //     }
+        // }
 
         const userLoginData = { email, password }
         const response = await axios.post('http://localhost:4000/api/user/login', userLoginData).catch((error) => error.response)

@@ -9,6 +9,8 @@ function SignupForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const { dispatch } = useAuthContext()
+    const { user } = useAuthContext()
+
 
     const handleSubmitUserData = async (e) => {
         e.preventDefault();
