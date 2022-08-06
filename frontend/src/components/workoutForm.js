@@ -36,7 +36,7 @@ function WorkoutForm() {
     }
 
     return (
-        <div>
+        <div className='workoutForm'>
             <form className="creationForm" onSubmit={handleSubmit}>
                 <label>Exercise name:</label>
                 <input type="text" name="name" className='inputs' maxLength="15" onChange={(e) => setTitle(e.target.value)} />

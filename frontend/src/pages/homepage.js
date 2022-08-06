@@ -7,12 +7,24 @@ import { useAuthContext } from '../hooks/useAuthContext'
 import WorkoutDetails from '../components/workoutDetails'
 import WorkoutForm from '../components/workoutForm'
 
+//hooks
+import useWindowSize from '../hooks/useWindowSize';
+
+
 function Home() {
+    const [displayNew, setDisplayNew] = useState(false)
     const { user } = useAuthContext()
     const [workouts, setWorkouts] = useState(null)
+    const [workoutsLength, setWorkoutsLength] = useState(null)
     const [email, setEmail] = useState(null)
     const [isAuth, setIsAuth] = useState(null)
     const { dispatch } = useAuthContext()
+    const size = useWindowSize()
+
+    const handleDisplay = () => {
+        setDisplayNew(!displayNew)
+
+    }
 
     useEffect(() => {
         setEmail(user.userEmail)
@@ -29,6 +41,8 @@ function Home() {
             if (response.status === 200) {
                 setWorkouts(response.data)
                 setIsAuth(response.data.isAuth)
+                console.log(workouts)
+                setWorkoutsLength(workouts.length)
             }
             if (response.status === 401) {
                 dispatch({ type: "LOGOUT" })
@@ -43,11 +57,19 @@ function Home() {
 
     return (
         <div className="homepage">
+            <div>
+                {size.width < 1250 && <div className='displayFormBtnDiv'><button className='displayFormBtn' onClick={handleDisplay}>Create</button></div>}
+                {displayNew ? <div>{size.width < 1250 && <div className='creationFormNest2'>
+                    <WorkoutForm />
+                </div>}</div> : null}
+            </div>
+
             <div className='innerHomepage'>
+
                 <div className='workouts'>
-                    {workouts && workouts.map((workout) => (
+                    {workoutsLength > 0 ? <div className='innerWorkouts'>{workouts && workouts.map((workout) => (
                         <WorkoutDetails key={workout._id} workout={workout} />
-                    ))}
+                    ))}</div> : <p className='askCreation'>Create a workout to begin</p>}
                 </div>
                 <div className='creationFormNest'>
                     <WorkoutForm />

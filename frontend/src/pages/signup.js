@@ -9,8 +9,6 @@ function SignupForm() {
     const [password, setPassword] = useState('')
     const [error, setError] = useState('')
     const { dispatch } = useAuthContext()
-    const { user } = useAuthContext()
-
 
     const handleSubmitUserData = async (e) => {
         e.preventDefault();
@@ -21,10 +19,8 @@ function SignupForm() {
         if (response.status === 200) {
             localStorage.setItem("user", JSON.stringify({ userEmail: userData.email, token: response.data.token }))
             console.log(response)
-
             //update authcontext
             dispatch({ type: "LOGIN", payload: { userEmail: response.data.newUser.email, token: response.data.token } })
-
             window.location = "/"
         }
         if (response.status === 401) {

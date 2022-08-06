@@ -1,10 +1,12 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuthContext } from '../hooks/useAuthContext'
 
-
 function Navbar() {
+    const [displayNew, setDisplayNew] = useState(false)
     const { user } = useAuthContext()
     const { dispatch } = useAuthContext()
+
     const handleClick = () => {
         dispatch({ type: "LOGOUT" })
         localStorage.removeItem('user')
